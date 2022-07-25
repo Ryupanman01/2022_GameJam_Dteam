@@ -37,15 +37,15 @@ void SceneManager_Update() {
 	case SCENE_TITLE:	//現在の画面がタイトルなら
 		Title_Update();
 		break;
-	//case SCENE_GAME:	//現在の画面がゲームなら
-	//	Game_Update();
-	//	break;
-	//case SCENE_HELP:	//現在の画面がヘルプなら
-	//	Help_Update();
-	//	break;
-	//case SCENE_RANKING:	//現在の画面がランキング（表示）なら
-	//	Ranking_Update();
-	//	break;
+	case SCENE_GAME:	//現在の画面がゲームなら
+		Game_Update();
+		break;
+	case SCENE_HELP:	//現在の画面がヘルプなら
+		Help_Update();
+		break;
+	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+		Ranking_Update();
+		break;
 	case SCENE_END:		//現在の画面がエンドなら
 		break;
 	}
@@ -57,15 +57,15 @@ void SceneManager_Draw() {
 	case SCENE_TITLE:	//現在の画面がタイトルなら
 		Title_Draw();
 		break;
-	//case SCENE_GAME:	//現在の画面がゲームなら
-	//	Game_Draw();
-	//	break;
-	//case SCENE_HELP:	//現在の画面がヘルプなら
-	//	Help_Draw();
-	//	break;
-	//case SCENE_RANKING:	//現在の画面がランキング（表示）なら
-	//	Ranking_Draw();
-	//	break;
+	case SCENE_GAME:	//現在の画面がゲームなら
+		Game_Draw();
+		break;
+	case SCENE_HELP:	//現在の画面がヘルプなら
+		Help_Draw();
+		break;
+	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+		Ranking_Draw();
+		break;
 	case SCENE_END:		//現在の画面がエンドなら
 		End_Draw();
 		break;
@@ -83,15 +83,15 @@ static void SceneManager_InitializeModule(SCENE scene) {
 	case SCENE_TITLE:	//現在の画面がタイトルなら
 		Title_Initialize();
 		break;
-	//case SCENE_GAME:	//現在の画面がゲームなら
-	//	Game_Initialize();
-	//	break;
-	//case SCENE_HELP:	//現在の画面がヘルプなら
-	//	Help_Initialize();
-	//	break;
-	//case SCENE_RANKING:	//現在の画面がランキング（表示）なら
-	//	Ranking_Initialize();
-	//	break;
+	case SCENE_GAME:	//現在の画面がゲームなら
+		Game_Initialize();
+		break;
+	case SCENE_HELP:	//現在の画面がヘルプなら
+		Help_Initialize();
+		break;
+	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+		Ranking_Initialize();
+		break;
 	case SCENE_END:		//現在の画面がエンドなら
 		End_Initialize();
 		break;
@@ -104,15 +104,15 @@ static void SceneManager_FinalizeModule(SCENE scene) {
 	case SCENE_TITLE:	//現在の画面がタイトルなら
 		Title_Finalize();
 		break;
-	//case SCENE_GAME:	//現在の画面がゲームなら
-	//	Game_Finalize();
-	//	break;
-	//case SCENE_HELP:	//現在の画面がヘルプなら
-	//	Help_Finalize();
-	//	break;
-	//case SCENE_RANKING:	//現在の画面がランキング（表示）なら
-	//	Ranking_Finalize();
-	//	break;
+	case SCENE_GAME:	//現在の画面がゲームなら
+		Game_Finalize();
+		break;
+	case SCENE_HELP:	//現在の画面がヘルプなら
+		Help_Finalize();
+		break;
+	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+		Ranking_Finalize();
+		break;
 	case SCENE_END:		//現在の画面がエンドなら
 		End_Finalize();
 		break;

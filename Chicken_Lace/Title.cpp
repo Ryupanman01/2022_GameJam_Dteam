@@ -20,7 +20,7 @@ void Title_Finalize() {
 //çXêV
 void Title_Update() {
 	if (iKeyFlg & PAD_INPUT_B) {
-		SceneManager_ChangeScene(SCENE_HELP);
+		SceneManager_ChangeScene(SCENE_END);
 	}
 }
 

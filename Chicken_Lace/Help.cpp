@@ -36,7 +36,7 @@ void Help_Update() {
 		}
 		//ゲームメインへ
 		if (HelpMenuNo == 1) {
-			SceneManager_ChangeScene(SCENE_END);
+			SceneManager_ChangeScene(SCENE_GAME);
 		}
 	}
 	//メニューカーソル

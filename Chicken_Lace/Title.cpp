@@ -30,6 +30,7 @@ void Title_Initialize() {
 void Title_Finalize() {
 	//‰æ‘œÁ‹
 	DeleteGraph(TitleImage);
+	DeleteGraph(TitleImage2);
 }
 
 //XV

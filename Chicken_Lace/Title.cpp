@@ -9,7 +9,6 @@ int TitleBGM, SelectSE, ClickSE;
 static int MenuNumber = 0;
 int PosY;
 static int count = 0;		
-int ButtonFlag;
 
 //初期化
 void Title_Initialize() {
@@ -35,7 +34,7 @@ void Title_Finalize() {
 
 //更新
 void Title_Update() {
-	if (iKeyFlg & PAD_INPUT_A) {
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A]) {
 		switch (MenuNumber)
 		{
 		case 0:
@@ -60,6 +59,7 @@ void Title_Update() {
 	}
 }
 
+bool a;
 //描画
 void Title_Draw() {
 	//画像配置
@@ -68,16 +68,28 @@ void Title_Draw() {
 	PlaySoundMem(TitleBGM, DX_PLAYTYPE_LOOP, FALSE);
 
 	//メニューカーソル移動処理
-	if (iKeyFlg & PAD_INPUT_DOWN)
+	if (Input.ThumbLY == -32768 && a == false)
 	{
+		a = true;
 		PlaySoundMem(SelectSE, DX_PLAYTYPE_BACK, TRUE);
 		if (++MenuNumber > 3)MenuNumber = 0;
 	}
-	if (iKeyFlg & PAD_INPUT_UP) {
-		
+	if (Input.ThumbLY > -32768 && Input.ThumbLY < 128 && a)
+	{
+		a = false;
+	}
+
+
+	if (Input.ThumbLY == 32767 && a == false) {
+		a = true;
 		PlaySoundMem(SelectSE, DX_PLAYTYPE_BACK, TRUE);
 		if (--MenuNumber < 0)MenuNumber = 3;
 	}
+	if (Input.ThumbLY < 32767 && Input.ThumbLY > 128 && a)
+	{
+		a = false;
+	}
+
 
 	//デバッグ用Line
 	DrawLine(0, 240, 640, 240, 0x000000, 1);

@@ -22,7 +22,7 @@ void Ranking_Finalize() {
 //更新
 void Ranking_Update() {
 	//パッドのBボタンが押されたら
-	if (iKeyFlg == PAD_INPUT_B) {
+	if (Input.Buttons[XINPUT_BUTTON_B]) {
 		//シーンをタイトルに戻す
 		SceneManager_ChangeScene(SCENE_TITLE);
 	}

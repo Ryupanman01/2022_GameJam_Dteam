@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		}
 		ClearDrawScreen();			//‰æ–ÊÁ‹
 
-		InputKey();					//“ü—Í
+		InputPad();					//“ü—Í
 
 		SceneManager_Update();		//XV
 		SceneManager_Draw();		//•`‰æ

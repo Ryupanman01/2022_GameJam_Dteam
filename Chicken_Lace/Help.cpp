@@ -19,17 +19,33 @@ void Help_Finalize() {
 }
 
 //更新
+bool SideCursor;
 void Help_Update() {
-
 	//メニューカーソル移動処理
-	if (iKeyFlg & PAD_INPUT_RIGHT) {
-		if (++HelpMenuNo > 1)HelpMenuNo = 1;
+	if (Input.ThumbLX == 32767 && SideCursor == false)
+	{
+		SideCursor = true;
+		if (++HelpMenuNo > 1)HelpMenuNo = 0;
+	
 	}
-	if (iKeyFlg & PAD_INPUT_LEFT) {
-		if (--HelpMenuNo < 0)HelpMenuNo = 0;
+	if (Input.ThumbLX < 32767 && Input.ThumbLX > 128 && SideCursor)
+	{
+		SideCursor = false;
 	}
-	//Bキーでメニュー選択
-	if (iKeyFlg & PAD_INPUT_A) {
+
+
+	if (Input.ThumbLX == -32768 && SideCursor == false)
+	{
+		SideCursor = true;
+		if (--HelpMenuNo < 0)HelpMenuNo = 1;
+	}
+	if (Input.ThumbLX > -32768 && Input.ThumbLX < 128 && SideCursor)
+	{
+		SideCursor = false;
+	}
+	
+	//Aキーでメニュー選択
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A]) {
 		//タイトルへ
 		if (HelpMenuNo == 0) {
 			SceneManager_ChangeScene(SCENE_TITLE);

@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "SceneManager.h"
 #include "Ranking.h"
+#include "Game.h"
 #include "Input.h"
 
 static int RankingImage;	//ランキング画像
@@ -64,7 +65,7 @@ void Ranking_Input() {
 	DrawString(150, 310, "> ", GetColor(0, 0, 0));
 	DrawBox(160, 305, 300, 335, GetColor(0, 0, 0), TRUE);
 	KeyInputSingleCharString(170, 310, 10, Ranking[(RANKCOUNT - 1)].name, FALSE);
-	//Ranking[(RANKCOUNT - 1)].score =  //ランキングデータの最後にスコアを登録
+	Ranking[(RANKCOUNT - 1)].score = Time;//ランキングデータの最後にスコアを登録
 	Ranking[(RANKCOUNT - 1)].no = RANKCOUNT; //ランキングNo.は最後にしておく
 	Ranking_Sort(); // ランキング並べ替え
 	Ranking_Save(); // ランキングデータの保存
@@ -76,7 +77,7 @@ void Ranking_Input() {
 void Ranking_Sort() {
 	int i, j;
 	RankingData work;
-	// 選択法ソート
+	
 	for (i = 0; i < RANKCOUNT; i++) {
 		for (j = i + 1; j < RANKCOUNT; j++) {
 			if (Ranking[i].score <= Ranking[j].score) {

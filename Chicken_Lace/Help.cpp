@@ -29,7 +29,7 @@ void Help_Update() {
 		if (--HelpMenuNo < 0)HelpMenuNo = 0;
 	}
 	//Bキーでメニュー選択
-	if (iKeyFlg & PAD_INPUT_B) {
+	if (iKeyFlg & PAD_INPUT_A) {
 		//タイトルへ
 		if (HelpMenuNo == 0) {
 			SceneManager_ChangeScene(SCENE_TITLE);

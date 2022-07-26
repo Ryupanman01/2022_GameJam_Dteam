@@ -13,5 +13,8 @@ extern int ButtonFlag;
 
 extern XINPUT_STATE Input;
 
+extern int SelectSE;
+extern int ClickSE;
+
 //ƒL[“ü—Íæ“¾ŠÖ”
 void InputPad(void);

@@ -32,13 +32,13 @@ void Game_Finalize() {
 
 // 更新
 void Game_Update() {
-	//スタートしていなくて、Aボタンが押されたらスタートフラグを立てる
-	if (iKeyFlg == PAD_INPUT_B && StartFlg == false) {
+	//スタートしていなくて、Bボタンが押されたらスタートフラグを立てる
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_B] && StartFlg == false) {
 		StartFlg = true;
 	}
 
 		//ゲーム中にAボタンを押したら
-	if (StartFlg == true && iKeyFlg == PAD_INPUT_A) {
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A] && StartFlg == true) {
 		//カウントダウンが0より大きかったら
 		if (Time > 0) {
 			StopFlg = true;
@@ -93,7 +93,7 @@ void Game_Start(){
 		//スタートしてないとき
 		else {
 			SetFontSize(30);
-			DrawString(90, 230, "Aボタンを押すとスタートします", GetColor(255, 255, 255));
+			DrawString(90, 230, "Bボタンを押すとスタートします", GetColor(255, 255, 255));
 		}
 	}
 }

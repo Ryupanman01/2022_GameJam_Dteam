@@ -39,7 +39,6 @@ void Title_Update() {
 		switch (MenuNumber)
 		{
 		case 0:
-			/*StopSoundMem(TitleBGM);*/
 			PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK, TRUE);
 			SceneManager_ChangeScene(SCENE_GAME);
 			break;
@@ -52,7 +51,6 @@ void Title_Update() {
 			SceneManager_ChangeScene(SCENE_HELP);
 			break;
 		case 3:
-			/*StopSoundMem(TitleBGM);*/
 			PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK, TRUE);
 			SceneManager_ChangeScene(SCENE_END);
 			break;

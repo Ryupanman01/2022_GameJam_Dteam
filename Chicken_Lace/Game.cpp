@@ -53,6 +53,8 @@ void Game_Update() {
 
 		//ゲーム中にAボタンを押したら
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A] && StartFlg == true) {
+		ChangeVolumeSoundMem(400, JamaBGM);
+		PlaySoundMem(PushSE, DX_PLAYTYPE_BACK, FALSE);
 		//カウントダウンが0より大きかったら
 		if (Time > 0) {
 			StopFlg = true;
@@ -95,6 +97,7 @@ void Game_Draw() {
 	//またはカウントダウンが0以下なら
 	if (Time <= 0) {
 		DeleteSoundMem(JamaBGM);
+		DeleteSoundMem(PushSE);
 		SceneManager_ChangeScene(SCENE_GAMEOVER);
 	}
 }

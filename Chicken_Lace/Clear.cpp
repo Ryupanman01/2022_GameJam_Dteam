@@ -20,7 +20,7 @@ void Clear_Finalize() {
 //更新
 void Clear_Update() {
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A]) {
-		if ((double)Time / 1000 < 5.8f/*ランキングの7位の値を入れる必要がある（現在は仮の数値）*/ ){
+		if ((double)Time / 1000 < Ranking[RANKCOUNT-1].score/*ランキングの7位の値を入れる必要がある（現在は仮の数値）*/ ){
 			SceneManager_ChangeScene(SCENE_RANKINPUT);
 		}
 		else {
@@ -32,5 +32,5 @@ void Clear_Update() {
 //描画
 void Clear_Draw() {
 	DrawGraph(0, 0, ClearImage,FALSE);
-	DrawFormatString(200, 200, 0x0000000 ,"今回のスコアは%.2fです",(double)Time / 1000, 0x000000);
+	DrawFormatString(200, 200, 0x0000000 ,"今回のスコアは%.2lfです",(double)Time / 1000, 0x000000);
 }

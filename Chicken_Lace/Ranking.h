@@ -3,7 +3,7 @@
 struct RankingData {
 	int no;
 	char name[5];
-	long score;
+	double score;
 };
 
 #define RANKCOUNT 7

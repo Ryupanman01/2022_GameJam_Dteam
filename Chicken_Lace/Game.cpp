@@ -67,8 +67,8 @@ void Game_Draw() {
 		SceneManager_ChangeScene(SCENE_CLEAR);
 	}
 	//またはカウントダウンが0以下なら
-	else if (Time <= 0) {
-		SceneManager_ChangeScene(SCENE_CLEAR);
+	if (Time <= 0) {
+		SceneManager_ChangeScene(SCENE_GAMEOVER);
 	}
 }
 

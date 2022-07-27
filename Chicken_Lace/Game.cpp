@@ -33,8 +33,10 @@ void Game_Finalize() {
 // 更新
 void Game_Update() {
 	//スタートしていなくて、Bボタンが押されたらスタートフラグを立てる
-	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_B] && StartFlg == false) {
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A] && StartFlg == false) {
 		StartFlg = true;
+		//Aボタンの連続入力を避けるため0に初期化している（他にいい方法があればそれを採用する）
+		ButtonFlag = 0;
 	}
 
 		//ゲーム中にAボタンを押したら
@@ -48,19 +50,14 @@ void Game_Update() {
 
 // 描画
 void Game_Draw() {
-	//初期
 	//カウントダウンタイムを表示
 	SetFontSize(100);
-	DrawFormatString(0, 0, 0xffffff, "TIME : %2d", Time / 1000);
-
-
+	DrawFormatString(0, 0, 0xffffff, "TIME : %.2f", (double)Time / 1000);
 
 	//デバッグ用
 	SetFontSize(20);
 	DrawFormatString(30, 120, 0xffffff, "StartFlg：%d", StartFlg);
 	DrawFormatString(30, 150, 0xffffff, "StopFlg：%d", StopFlg);
-	//DrawFormatString(10, 0, 0xffffff, "%d", StartFlg);
-
 
 	//ゲーム開始
 	Game_Start();
@@ -71,7 +68,7 @@ void Game_Draw() {
 	}
 	//またはカウントダウンが0以下なら
 	else if (Time <= 0) {
-		SceneManager_ChangeScene(SCENE_GAMEOVER);
+		SceneManager_ChangeScene(SCENE_CLEAR);
 	}
 }
 

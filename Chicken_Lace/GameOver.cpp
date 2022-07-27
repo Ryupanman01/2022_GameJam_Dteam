@@ -29,12 +29,14 @@ void GameOver_Update() {
 			break;
 		}
 	}
+	
 }
 
+
 void GameOver_Draw() {
-	
 	ChangeVolumeSoundMem(350, GameOverBGM);
-	PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
+PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
+	
 
 	//メニューカーソル移動処理
 	if (Input.ThumbLY == -32768 && WhideCursor == false)

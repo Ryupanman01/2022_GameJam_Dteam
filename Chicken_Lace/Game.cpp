@@ -14,6 +14,8 @@ int count;		//1回だけ呼び出す用
 
 int gameScore;
 
+int TimerSE;
+int MetronomeSE;
 // 初期化
 void Game_Initialize() {
 
@@ -22,18 +24,23 @@ void Game_Initialize() {
 
 	StartFlg = false;	//ゲームが始まったかどうか
 	StopFlg = false;
-	count = 0;			
+	count = 0;	
+	TimerSE = LoadSoundMem("Sound/TimerSE.mp3"); 
+	//MetronomeSE = LoadSoundMem("Sound/MetronomeSE.mp3"); 
 }
 
 // 終了処理
 void Game_Finalize() {
-
+	DeleteSoundMem(TimerSE);
+	//DeleteSoundMem(MetronomeSE);
 }
 
 // 更新
 void Game_Update() {
+	
 	//スタートしていなくて、Bボタンが押されたらスタートフラグを立てる
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_B] && StartFlg == false) {
+		
 		StartFlg = true;
 	}
 
@@ -87,9 +94,15 @@ void Game_Start(){
 
 	//スタートしたとき
 	if (StopFlg == false) {
+		
 		if (StartFlg == true) {
+			//PlaySoundMem(MetronomeSE, DX_PLAYTYPE_BACK, FALSE);
+			//ChangeVolumeSoundMem(350, MetronomeSE);
 			Time = StartTime - (GetNowCount() - TimeLimit);
+			PlaySoundMem(TimerSE, DX_PLAYTYPE_LOOP, FALSE);
+			
 		}
+
 		//スタートしてないとき
 		else {
 			SetFontSize(30);

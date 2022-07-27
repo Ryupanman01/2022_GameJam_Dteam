@@ -5,6 +5,7 @@
 
 static int HelpImage;		//タイトル画像格納
 static int HelpMenuNo = 0;	//メニューカーソル
+int HelpPosY;
 
 //初期化
 void Help_Initialize() {
@@ -64,8 +65,22 @@ void Help_Draw() {
 	//画像配置
 	DrawGraph(0, 0, HelpImage, FALSE);
 	//X 640 Y 480
-	//メニューカーソル表示
-	DrawBox(10 + (480 * HelpMenuNo), 50 - (5 * HelpMenuNo), 
-		30 + (440 * HelpMenuNo), 30 - (5 * HelpMenuNo), 0xff0000, TRUE);
 
+	SetFontSize(30);
+	if (HelpMenuNo != 0)DrawString(40, 400, "もどる", 0x000000);
+	if (HelpMenuNo != 1)DrawString(340, 400, "ゲームスタート！", 0x000000);
+
+	SetFontSize(40);
+	//HelpPosY = HelpMenuNo * 49;
+	if (HelpMenuNo == 0)
+	{
+		DrawBox(40, 440, 170, 400, 0x989898, TRUE);
+		DrawString(40, 400, "もどる", 0xffffff);
+	}
+	else if (HelpMenuNo == 1)
+	{
+		DrawBox(260, 440, 580, 400, 0x989898, TRUE);
+		DrawString(260, 400, "ゲームスタート！", 0xffffff);
+	}
 }
+

@@ -1,7 +1,7 @@
-ryu 1 0        
+ddga 2 -29
+reita 2 0
+shin 2 0
+ren 2 0
 toua 2 0
-ren 3 0
-shin 4 0
-reita 5 0
-syouta 6 0
-araiT 7 5
+sd 8 272
+adfgr 2 272

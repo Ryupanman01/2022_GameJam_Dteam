@@ -61,8 +61,8 @@ void GameOver_Draw() {
 
 
 	//デバッグ用Line
-	DrawLine(0, 240, 640, 240, 0xffffff, 1);
-	DrawLine(320, 0, 320, 480, 0xffffff, 1);
+	/*DrawLine(0, 240, 640, 240, 0xffffff, 1);
+	DrawLine(320, 0, 320, 480, 0xffffff, 1);*/
 
 	SetFontSize(80);
 	DrawString(157, 80, "GameOver", 0xffffff);

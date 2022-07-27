@@ -32,5 +32,6 @@ void Clear_Update() {
 //描画
 void Clear_Draw() {
 	DrawGraph(0, 0, ClearImage,FALSE);
-	DrawFormatString(200, 200, 0x0000000 ,"今回のスコアは%.2lfです",(double)Time / 1000, 0x000000);
+	SetFontSize(30);
+	DrawFormatString(140, 200, 0x0000000 ,"今回のスコアは%.2lfです",(double)Time / 1000, 0x000000);
 }

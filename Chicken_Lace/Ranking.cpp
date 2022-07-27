@@ -8,11 +8,16 @@ static int RankingImage;	//ランキング画像
 static int WaitTime;		//ランキング表示時間
 struct  RankingData Ranking[RANKCOUNT];	//ランキングデータ管理用
 
+
+
 //初期化
 void Ranking_Initialize() {
 	RankingImage = LoadGraph("Images/Ranking.png");
 	WaitTime = 0;
 	Ranking_Read();
+
+	//クリックSE読込み
+	ClickSE = LoadSoundMem("Sound/ClickSE.mp3");
 }
 
 //終了処理
@@ -22,8 +27,9 @@ void Ranking_Finalize() {
 
 //更新
 void Ranking_Update() {
-	//パッドのBボタンが押されたら
-	if (Input.Buttons[XINPUT_BUTTON_B]) {
+	//パッドのAボタンが押されたら
+	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A]) {
+		PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK, TRUE);
 		//シーンをタイトルに戻す
 		SceneManager_ChangeScene(SCENE_TITLE);
 	}
@@ -46,7 +52,7 @@ void Ranking_Draw() {
 	//文字の表示(点滅をする)
 	if (++WaitTime < 50) {
 		SetFontSize(15);
-		DrawString(180, 420, "-- Bボタンを押すとタイトルに戻る --",GetColor(255,255,255));
+		DrawString(180, 420, "-- Aボタンを押すとタイトルに戻る --",GetColor(255,255,255));
 	}
 	else if (++WaitTime > 100) {
 		WaitTime = 0;

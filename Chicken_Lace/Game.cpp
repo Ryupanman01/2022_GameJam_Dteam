@@ -12,17 +12,29 @@ bool StartFlg;	//ゲームが始まったかどうか
 bool StopFlg;
 int count;		//1回だけ呼び出す用
 
-int gameScore;
+static int ButtonImage;        // 通常ボタン画像
+static int ButtonPushImage;    // 押されたボタン画像
+static int GameImage;          // ゲームメインの白背景
+
+int PushSE;         // ボタン押したときの効果音
+int JamaBGM;        // お邪魔BGM
 
 // 初期化
 void Game_Initialize() {
 
-	StartTime = 10000;
+	StartTime = 20000;
 	Time = StartTime;
 
 	StartFlg = false;	//ゲームが始まったかどうか
 	StopFlg = false;
-	count = 0;			
+	count = 0;		
+
+	ButtonImage = LoadGraph("Images/button.png");
+	ButtonPushImage = LoadGraph("Images/buttonpush.png");
+	GameImage = LoadGraph("Images/white.png");
+
+	JamaBGM = LoadSoundMem("Sound/Timer.mp3");
+	PushSE = LoadSoundMem("Sound/button.mp3");
 }
 
 // 終了処理
@@ -50,24 +62,39 @@ void Game_Update() {
 
 // 描画
 void Game_Draw() {
+	DrawGraph(0, 0, GameImage, TRUE);
+
 	//カウントダウンタイムを表示
 	SetFontSize(100);
-	DrawFormatString(0, 0, 0xffffff, "TIME : %.2f", (double)Time / 1000);
-
-	//デバッグ用
-	SetFontSize(20);
-	DrawFormatString(30, 120, 0xffffff, "StartFlg：%d", StartFlg);
-	DrawFormatString(30, 150, 0xffffff, "StopFlg：%d", StopFlg);
+	DrawFormatString(190, 20, 0x000000, "%.2lf", (double)Time / 1000);
 
 	//ゲーム開始
 	Game_Start();
 
+	// 隠しの演出
+	if (Time < 15000) {
+		DrawBox(100, 0, 500, 150, 0xffffff, TRUE);
+	}
+
+	// お邪魔BGM
+	if (Time < 15000) {
+		ChangeVolumeSoundMem(400, JamaBGM);
+		PlaySoundMem(JamaBGM, DX_PLAYTYPE_BACK, FALSE);
+	}
+
+	// 通常ボタンの表示
+	if (StartFlg == true) {
+		DrawRotaGraph(320, 300, 0.5, 0, ButtonImage, TRUE);
+	}
+
 	//もしストップフラグがtrueなら
 	if (StopFlg == true) {
+		DeleteSoundMem(JamaBGM);
 		SceneManager_ChangeScene(SCENE_CLEAR);
 	}
 	//またはカウントダウンが0以下なら
 	if (Time <= 0) {
+		DeleteSoundMem(JamaBGM);
 		SceneManager_ChangeScene(SCENE_GAMEOVER);
 	}
 }
@@ -90,7 +117,7 @@ void Game_Start(){
 		//スタートしてないとき
 		else {
 			SetFontSize(30);
-			DrawString(90, 230, "Bボタンを押すとスタートします", GetColor(255, 255, 255));
+			DrawString(90, 230, "Aボタンを押すとスタートします", GetColor(0, 0, 0));
 		}
 	}
 }

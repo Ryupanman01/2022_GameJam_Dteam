@@ -11,6 +11,9 @@ int HelpPosY;
 void Help_Initialize() {
 	//画像読み込み
 	HelpImage = LoadGraph("Images/Help.png");
+
+	//クリックSE読込み
+	ClickSE = LoadSoundMem("Sound/ClickSE.mp3");
 }
 
 //終了処理
@@ -26,6 +29,7 @@ void Help_Update() {
 	if (Input.ThumbLX == 32767 && SideCursor == false)
 	{
 		SideCursor = true;
+		PlaySoundMem(SelectSE, DX_PLAYTYPE_BACK, TRUE);
 		if (++HelpMenuNo > 1)HelpMenuNo = 0;
 	
 	}
@@ -38,6 +42,7 @@ void Help_Update() {
 	if (Input.ThumbLX == -32768 && SideCursor == false)
 	{
 		SideCursor = true;
+		PlaySoundMem(SelectSE, DX_PLAYTYPE_BACK, TRUE);
 		if (--HelpMenuNo < 0)HelpMenuNo = 1;
 	}
 	if (Input.ThumbLX > -32768 && Input.ThumbLX < 128 && SideCursor)
@@ -49,10 +54,12 @@ void Help_Update() {
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A]) {
 		//タイトルへ
 		if (HelpMenuNo == 0) {
+			PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK, TRUE);
 			SceneManager_ChangeScene(SCENE_TITLE);
 		}
 		//ゲームメインへ
 		if (HelpMenuNo == 1) {
+			PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK, TRUE);
 			SceneManager_ChangeScene(SCENE_GAME);
 		}
 	}

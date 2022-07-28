@@ -7,6 +7,9 @@
 int StartTime;	//カウントダウン初期値
 int TimeLimit;	//時間経過保持変数
 int Time;		//現在のカウントダウン値
+int NowTime;
+
+int i, j;
 
 bool StartFlg;	//ゲームが始まったかどうか
 bool StopFlg;
@@ -39,13 +42,15 @@ void Game_Initialize() {
 
 // 終了処理
 void Game_Finalize() {
-
+	
 }
 
 // 更新
 void Game_Update() {
 	//スタートしていなくて、Bボタンが押されたらスタートフラグを立てる
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A] && StartFlg == false) {
+		i = 0;
+		j = 640;
 		StartFlg = true;
 		//Aボタンの連続入力を避けるため0に初期化している（他にいい方法があればそれを採用する）
 		ButtonFlag = 0;
@@ -54,6 +59,7 @@ void Game_Update() {
 		//ゲーム中にAボタンを押したら
 	if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_A] && StartFlg == true) {
 		ChangeVolumeSoundMem(400, JamaBGM);
+		NowTime = Time;
 		PlaySoundMem(PushSE, DX_PLAYTYPE_BACK, FALSE);
 		//カウントダウンが0より大きかったら
 		if (Time > 0) {
@@ -75,7 +81,15 @@ void Game_Draw() {
 
 	// 隠しの演出
 	if (Time < 15000) {
-		DrawBox(100, 0, 500, 150, 0xffffff, TRUE);
+		DrawBox(0, 0, i, 150, 0x999999, TRUE);
+		DrawBox(640, 0, j, 150, 0x999999, TRUE);
+		if (i <= 320) {
+			i = i + 2;
+		}
+		if (j >= 320)
+		{
+			j = j - 2;
+		}
 	}
 
 	// お邪魔BGM

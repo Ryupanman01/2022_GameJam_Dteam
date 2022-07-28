@@ -52,6 +52,7 @@ void SceneManager_Update() {
 		Help_Update();
 		break;
 	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+	case SCENE_NEWRANKING:
 		Ranking_Update();
 		break;
 	case SCENE_RANKINPUT:
@@ -82,6 +83,9 @@ void SceneManager_Draw() {
 	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
 		Ranking_Draw();
 		break;
+	case SCENE_NEWRANKING:
+		Ranking_NewDraw();
+		break;
 	case SCENE_RANKINPUT:
 		Ranking_Input();
 		break;
@@ -109,12 +113,13 @@ static void SceneManager_InitializeModule(SCENE scene) {
 		Clear_Initialize();
 		break;
 	case SCENE_GAMEOVER://現在の画面がゲームなら
-		GameOver_Finalize();
+		GameOver_Initialize();
 		break;
 	case SCENE_HELP:	//現在の画面がヘルプなら
 		Help_Initialize();
 		break;
 	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+	case SCENE_NEWRANKING:
 	case SCENE_RANKINPUT:
 		Ranking_Initialize();
 		break;
@@ -143,6 +148,7 @@ static void SceneManager_FinalizeModule(SCENE scene) {
 		Help_Finalize();
 		break;
 	case SCENE_RANKING:	//現在の画面がランキング（表示）なら
+	case SCENE_NEWRANKING:
 	case SCENE_RANKINPUT:
 		Ranking_Finalize();
 		break;

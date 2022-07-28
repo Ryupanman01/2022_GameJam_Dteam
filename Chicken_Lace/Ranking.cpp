@@ -45,7 +45,7 @@ void Ranking_Draw() {
 	//ランキング一覧を表示する
 	SetFontSize(30);
 	for (int i = 0; i < RANKCOUNT; i++) {
-		DrawFormatString(125, 150 + i * 30, GetColor(255, 255, 255), "%2d %10.2lf", Ranking[i].no, (double)Ranking[i].score);
+		DrawFormatString(210, 150 + i * 30, GetColor(255, 255, 255), "%2d %10.2lf", Ranking[i].no, (double)Ranking[i].score);
 
 	}
 
@@ -59,23 +59,37 @@ void Ranking_Draw() {
 	}
 }
 
+//描画
+void Ranking_NewDraw() {
+	//ランキング背景画像の表示
+	DrawGraph(0, 0, RankingImage, FALSE);
+	SetFontSize(50);
+	DrawString(180, 50, "NewRecode!!", GetColor(255, 255, 255));
+
+	//ランキング一覧を表示する
+	SetFontSize(30);
+	for (int i = 0; i < RANKCOUNT; i++) {
+		DrawFormatString(210, 150 + i * 30, GetColor(255, 255, 255), "%2d %10.2lf", Ranking[i].no, (double)Ranking[i].score);
+
+	}
+
+	//文字の表示(点滅をする)
+	if (++WaitTime < 50) {
+		SetFontSize(15);
+		DrawString(180, 420, "-- Aボタンを押すとタイトルに戻る --", GetColor(255, 255, 255));
+	}
+	else if (++WaitTime > 100) {
+		WaitTime = 0;
+	}
+}
+
 //ランキング入力処理
 void Ranking_Input() {
-	//DrawGraph(0, 0, RankingImage, FALSE);
-	////フォントサイズ指定
-	//SetFontSize(20);
-	////名前入力指示文字列の描画
-	//DrawString(150, 240, "ランキングに登録します", 0xffffff);
-	//DrawString(150, 270, "名前を英字(10文字以内)で入力してください", 0xffffff);
-	//// 名前の入力
-	//DrawString(150, 310, "> ", 0xffffff);
-	//DrawBox(160, 305, 300, 335, 0xffffff, TRUE);
-	//KeyInputSingleCharString(170, 310, 10, Ranking[(RANKCOUNT - 1)].name, FALSE);
 	Ranking[(RANKCOUNT - 1)].score = (double)Time / 1000;//ランキングデータの最後にスコアを登録
 	Ranking[(RANKCOUNT - 1)].no = RANKCOUNT; //ランキングNo.は最後にしておく
 	Ranking_Sort(); // ランキング並べ替え
 	Ranking_Save(); // ランキングデータの保存
-	SceneManager_ChangeScene(SCENE_RANKING); //ランキング表示画面へ移行
+	SceneManager_ChangeScene(SCENE_NEWRANKING); //ランキング表示画面へ移行
 }
 
 

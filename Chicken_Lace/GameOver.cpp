@@ -1,14 +1,18 @@
 #include "DxLib.h"
+#include "Game.h";
 #include "GameOver.h"
 #include "SceneManager.h"
 #include "Input.h"
 
-static int GameOverMenuNum = 0;
+int GameOverMenuNum;
 bool WhideCursor;
 int GameOverBGM;
+bool BGMFlag;
 
 void GameOver_Initialize() {
 	GameOverBGM = LoadSoundMem("Sound/GameOverSE.mp3");
+	BGMFlag = true;
+	GameOverMenuNum = 0;
 }
 
 void GameOver_Finalize() {
@@ -32,9 +36,11 @@ void GameOver_Update() {
 }
 
 void GameOver_Draw() {
-	
-	ChangeVolumeSoundMem(350, GameOverBGM);
-	PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
+	if (BGMFlag == true) {
+		ChangeVolumeSoundMem(350, GameOverBGM);
+		PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
+		BGMFlag = false;
+	}
 
 	//メニューカーソル移動処理
 	if (Input.ThumbLY == -32768 && WhideCursor == false)
@@ -67,6 +73,9 @@ void GameOver_Draw() {
 	SetFontSize(80);
 	DrawString(157, 80, "GameOver", 0xffffff);
 	SetFontSize(34);
+	if (Time <= 0) {
+		DrawString(60, 200, "あなたは・・・ド級チキンです！", 0xffffff);
+	}
 	if (GameOverMenuNum != 0)DrawString(198, 285, "もう一度遊ぶ！", 0xffffff);
 	if (GameOverMenuNum != 1)DrawString(225, 355, "Titleに戻る", 0xffffff);
 

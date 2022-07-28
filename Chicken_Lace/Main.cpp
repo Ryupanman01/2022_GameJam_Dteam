@@ -13,6 +13,8 @@ static float mFps;          //fps
 static const int N = 60;	//平均を取るサンプル数
 static const int FPS = 60;	//設定したFPS
 
+int State;
+
 bool Update() {
 	if (mCount == 0) { //1フレーム目なら時刻を記憶
 		mStartTime = GetNowCount();
@@ -56,7 +58,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	SceneManager_Initialize();			//初期化
 
-	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0) {	//画面更新 & メッセージ処理 & 画面消去
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && State != 99) {	//画面更新 & メッセージ処理 & 画面消去
 
 		if (SceneManager_GameEnd_Status()) {//メニューから終了が選択されたら
 			break;
@@ -73,6 +75,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		ScreenFlip();				//画面更新
 		Wait();
+
+		//Backで強制終了
+		if (ButtonFlag == 1 && Input.Buttons[XINPUT_BUTTON_BACK]) {
+			State = 99;
+		}
 	}
 
 	SceneManager_Finalize();		//終了処理

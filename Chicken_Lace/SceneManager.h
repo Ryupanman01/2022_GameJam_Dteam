@@ -8,6 +8,7 @@ typedef enum {
 	SCENE_GAMEOVER,
 	SCENE_HELP,		//ヘルプ画面
 	SCENE_RANKING,	//ランキング画面（表示）
+	SCENE_NEWRANKING,//NewRecodeのランキング画面
 	SCENE_RANKINPUT,//ランキング入力
 	SCENE_END,		//エンド画面
 	SCENE_STOP,		//ストップ

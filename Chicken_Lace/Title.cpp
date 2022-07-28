@@ -6,7 +6,7 @@
 static int TitleImage;		//タイトル画像格納
 static int TitleImage2;		//タイトル画像2格納
 int TitleBGM, SelectSE, ClickSE;
-static int MenuNumber = 0;
+int MenuNumber;
 int PosY;
 static int count = 0;		
 
@@ -22,7 +22,7 @@ void Title_Initialize() {
 	SelectSE = LoadSoundMem("Sound/SelectSE.mp3");
 	//クリックSE読込み
 	ClickSE = LoadSoundMem("Sound/ClickSE.mp3");
-
+	MenuNumber = 0;
 }
 
 //終了処理

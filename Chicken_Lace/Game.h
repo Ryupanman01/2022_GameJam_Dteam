@@ -8,3 +8,4 @@ void Game_Draw();		//描画
 void Game_Start();		//ゲームスタート
 
 extern int Time;
+extern int NowTime;

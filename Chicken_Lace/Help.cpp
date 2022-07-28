@@ -4,7 +4,7 @@
 #include "Input.h"
 
 static int HelpImage;		//タイトル画像格納
-static int HelpMenuNo = 0;	//メニューカーソル
+int HelpMenuNo;	//メニューカーソル
 int HelpPosY;
 
 //初期化
@@ -14,6 +14,8 @@ void Help_Initialize() {
 
 	//クリックSE読込み
 	ClickSE = LoadSoundMem("Sound/ClickSE.mp3");
+
+	HelpMenuNo = 0;
 }
 
 //終了処理

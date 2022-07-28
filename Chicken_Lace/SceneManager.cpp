@@ -109,7 +109,7 @@ static void SceneManager_InitializeModule(SCENE scene) {
 		Clear_Initialize();
 		break;
 	case SCENE_GAMEOVER://Œ»İ‚Ì‰æ–Ê‚ªƒQ[ƒ€‚È‚ç
-		GameOver_Finalize();
+		GameOver_Initialize();
 		break;
 	case SCENE_HELP:	//Œ»İ‚Ì‰æ–Ê‚ªƒwƒ‹ƒv‚È‚ç
 		Help_Initialize();

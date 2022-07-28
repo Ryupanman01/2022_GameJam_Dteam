@@ -3,16 +3,17 @@
 #include "SceneManager.h"
 #include "Input.h"
 
-static int GameOverMenuNum = 0;
+int GameOverMenuNum;
 bool WhideCursor;
-int GameOverBGM;
+//int GameOverBGM;
 
 void GameOver_Initialize() {
-	GameOverBGM = LoadSoundMem("Sound/GameOverSE.mp3");
+	//GameOverBGM = LoadSoundMem("Sound/GameOverSE.mp3");
+	GameOverMenuNum = 0;
 }
 
 void GameOver_Finalize() {
-	DeleteSoundMem(GameOverBGM);
+	//DeleteSoundMem(GameOverBGM);
 }
 
 void GameOver_Update() {
@@ -33,8 +34,8 @@ void GameOver_Update() {
 
 void GameOver_Draw() {
 	
-	ChangeVolumeSoundMem(350, GameOverBGM);
-	PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
+	//ChangeVolumeSoundMem(350, GameOverBGM);
+	//PlaySoundMem(GameOverBGM, DX_PLAYTYPE_BACK, TRUE);
 
 	//メニューカーソル移動処理
 	if (Input.ThumbLY == -32768 && WhideCursor == false)
